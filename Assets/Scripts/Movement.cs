@@ -5,7 +5,7 @@ using System.Collections;
 public class Movement : MonoBehaviour {
 
     bool alive = true;       // if the player is alive or not
-    float speed = 6;         // Speed the player mvoes at
+    float speed = 10;         // Speed the player mvoes at
     float countdown = 1.5f;  // How long until the level resets when done
 
     bool gameOver = false;   // is the game done or not
@@ -21,9 +21,10 @@ public class Movement : MonoBehaviour {
     {
 	    if (alive)
         {
-            // Moves player in the position they are looking.
+            // Moves Moves forward at all times
             // Turn head to steer
-            transform.position += (Camera.main.transform.forward * speed * Time.deltaTime);
+            Vector3 movement = new Vector3(Input.acceleration.x, 0.0f, 0.7f);
+            GetComponent<Rigidbody>().velocity = movement * speed;
         }
 
         if (gameOver)
